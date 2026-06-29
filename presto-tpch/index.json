@@ -35,9 +35,19 @@
   },
   "assets": {
     "host01": [
-      { "file": "tpch.properties", "target": "/root/tpch.properties" },
-      { "file": "tpcds.properties", "target": "/root/tpcds.properties" },
-      { "file": "jmx.properties", "target": "/root/jmx.properties" }
+      { "file": "tpch.properties", "target": "/root/" },
+      { "file": "tpcds.properties", "target": "/root/" },
+      { "file": "jmx.properties", "target": "/root/" }
+    ],
+    "node1": [
+      { "file": "tpch.properties", "target": "/root/" },
+      { "file": "tpcds.properties", "target": "/root/" },
+      { "file": "jmx.properties", "target": "/root/" }
+    ],
+    "ubuntu": [
+      { "file": "tpch.properties", "target": "/root/" },
+      { "file": "tpcds.properties", "target": "/root/" },
+      { "file": "jmx.properties", "target": "/root/" }
     ]
   },
   "backend": {
