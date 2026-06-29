@@ -101,12 +101,12 @@ Analyze monthly revenue trends by extracting the year and month from the order d
 
 ```sql
 SELECT
-    YEAR(o.orderdate) AS order_year,
-    MONTH(o.orderdate) AS order_month,
+    EXTRACT(YEAR FROM o.orderdate) AS order_year,
+    EXTRACT(MONTH FROM o.orderdate) AS order_month,
     COUNT(*) AS total_orders,
     ROUND(SUM(o.totalprice), 2) AS total_revenue
 FROM orders o
-GROUP BY YEAR(o.orderdate), MONTH(o.orderdate)
+GROUP BY EXTRACT(YEAR FROM o.orderdate), EXTRACT(MONTH FROM o.orderdate)
 ORDER BY order_year, order_month
 LIMIT 20;
 ```
@@ -116,7 +116,7 @@ LIMIT 20;
 Exit the Presto CLI session:
 
 ```sql
-quit;
+quit
 ```
 
 Proceed to the next step to query the TPC-DS dataset.

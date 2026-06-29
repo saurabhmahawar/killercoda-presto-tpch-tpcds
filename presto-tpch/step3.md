@@ -63,7 +63,7 @@ Expected output:
 
 | Schema | Description |
 |--------|-------------|
-| `tiny` | Very small dataset (~10 rows per table, great for quick tests) |
+| `tiny` | Scale factor 0.01 (e.g., ~1,500 customers, ~15,000 orders, ~60,000 lineitems) |
 | `sf1`  | Scale factor 1 (~1 GB of data, good for learning) |
 | `sf100` | Scale factor 100 (~100 GB of data) |
 | `sf1000` | Scale factor 1000 (~1 TB of data) |
@@ -145,7 +145,7 @@ Notice TPC-DS has **24 tables** compared to TPC-H's 8 — it's a much more compl
 Exit the Presto CLI:
 
 ```sql
-quit;
+quit
 ```
 
 Proceed to the next step to run queries against TPC-H data.

@@ -58,7 +58,7 @@ Count the total transactions in the `store_sales` table:
 SELECT COUNT(*) AS total_store_sales FROM store_sales;
 ```
 
-At the tiny scale factor, this returns approximately **28,800** records.
+At the tiny scale factor, this returns approximately **120,527** records.
 
 ## Query 5: Retrieve Top 10 Items by Sales Quantity
 
@@ -148,6 +148,6 @@ The following table summarizes the structural differences between TPC-H and TPC-
 Exit the Presto CLI session:
 
 ```sql
-quit;
+quit
 ```
 

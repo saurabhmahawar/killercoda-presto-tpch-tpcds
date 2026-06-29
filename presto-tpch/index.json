@@ -13,7 +13,7 @@
         "text": "step1.md"
       },
       {
-        "title": "Configure TPC-H & TPC-DS Catalogs",
+        "title": "Verify PrestoDB & Access Web UI",
         "text": "step2.md"
       },
       {
@@ -32,23 +32,6 @@
     "finish": {
       "text": "finish.md"
     }
-  },
-  "assets": {
-    "host01": [
-      { "file": "tpch.properties", "target": "/root/" },
-      { "file": "tpcds.properties", "target": "/root/" },
-      { "file": "jmx.properties", "target": "/root/" }
-    ],
-    "node1": [
-      { "file": "tpch.properties", "target": "/root/" },
-      { "file": "tpcds.properties", "target": "/root/" },
-      { "file": "jmx.properties", "target": "/root/" }
-    ],
-    "ubuntu": [
-      { "file": "tpch.properties", "target": "/root/" },
-      { "file": "tpcds.properties", "target": "/root/" },
-      { "file": "jmx.properties", "target": "/root/" }
-    ]
   },
   "backend": {
     "imageid": "ubuntu"

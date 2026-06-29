@@ -1,69 +1,38 @@
-# Step 2: Configure TPC-H & TPC-DS Catalogs
+# Step 2: Verify PrestoDB & Access Web UI
 
-In this step, you will inspect how Presto catalogs are configured and verify the setup.
+In this step, you will verify that the Presto catalogs are loaded correctly and access the Presto Web UI to inspect the cluster status.
 
-## Understanding Presto Catalogs
+## Verify Mounted Catalogs
 
-In Presto, a **catalog** is a connector configuration that defines how Presto accesses a data source. Catalogs are configured via `.properties` files in the `etc/catalog/` directory.
-
-Each catalog file specifies the connector name and any connector-specific properties.
-
-## Inspect the Catalog Files
-
-View the configuration files:
-
-**TPC-H Catalog:**
-
-```bash
-cat ~/presto-catalog/tpch.properties
-```
-
-Output:
-```
-connector.name=tpch
-```
-
-**TPC-DS Catalog:**
-
-```bash
-cat ~/presto-catalog/tpcds.properties
-```
-
-Output:
-```
-connector.name=tpcds
-```
-
-**JMX Catalog (Used for system monitoring):**
-
-```bash
-cat ~/presto-catalog/jmx.properties
-```
-
-Output:
-```
-connector.name=jmx
-```
-
-## How These Connectors Work
-
-| Connector | Description | Data Model |
-|-----------|-------------|------------|
-| **tpch**  | TPC-H benchmark data generator | Parts supplier (customers, orders, line items, suppliers, nations, regions) |
-| **tpcds** | TPC-DS benchmark data generator | Retail store (stores, customers, sales, items, promotions, warehouses) |
-| **jmx**   | Java Management Extensions | Exposes JVM and Presto internal metrics |
-
-> **Note:** The TPC-H and TPC-DS connectors do not connect to an external database. Instead, they generate data on the fly based on the scale factor you choose. This makes them ideal for learning and testing query performance.
-
-## Verify Catalogs are Mounted
-
-Verify the files are mounted inside the container:
+Confirm that your catalog properties files are mounted inside the container's configuration directory:
 
 ```bash
 docker exec presto ls -la /opt/presto-server/etc/catalog/
 ```
 
-You should see all three `.properties` files listed in the output.
+You should see the following files in the output:
+*   `tpch.properties`
+*   `tpcds.properties`
+*   `jmx.properties`
+
+These configurations instruct PrestoDB to load the corresponding connectors.
+
+## Access the Presto Web UI
+
+PrestoDB includes a built-in web dashboard for monitoring queries and cluster resources. Since port `8080` was exposed when starting the container, you can access the dashboard directly.
+
+Open the Presto Web UI in your browser:
+*   [Access Presto Web UI](https://{{TRAFFIC_HOST1_8080}})
+*   *Alternatively, you can open the **Traffic/Ports** menu in the top-right corner of the KillerCoda interface and select port `8080`.*
+
+## Explore the Dashboard
+
+The dashboard provides real-time information about your Presto server:
+
+1.  **Cluster State**: At the top, you will see the number of active worker nodes, running queries, and total memory usage. Since we are running a single-node setup, the active worker count will be `1`.
+2.  **Query History**: The main table lists all executed queries, their SQL statements, execution status, and resource consumption.
+3.  **Active Queries**: If a query is currently running, you can click on its ID to view the physical execution plan, stage breakdown, and operator-level statistics.
+
+Leave the Web UI tab open in your browser. As you run SQL queries in the next steps, you can refresh this dashboard to monitor their progress and performance metrics.
 
 Proceed to the next step to connect to the Presto CLI.
-
