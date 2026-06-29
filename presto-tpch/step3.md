@@ -68,14 +68,14 @@ Expected output:
 | `sf100` | Scale factor 100 (~100 GB of data) |
 | `sf1000` | Scale factor 1000 (~1 TB of data) |
 
-> **Tip:** For this tutorial, we'll use `sf1` — it has enough data to be meaningful but queries return quickly.
+> **Tip:** For this tutorial, we'll use `tiny` — it generates a small dataset so our queries return instantly without hitting memory limits in this sandbox environment.
 
 ## List TPC-H Tables
 
-Let's see what tables are available in the `sf1` schema:
+Let's see what tables are available in the `tiny` schema:
 
 ```sql
-SHOW TABLES FROM tpch.sf1;
+SHOW TABLES FROM tpch.tiny;
 ```
 
 Expected output:
@@ -104,7 +104,7 @@ SHOW SCHEMAS FROM tpcds;
 You'll see similar scale factors. Let's list the TPC-DS tables:
 
 ```sql
-SHOW TABLES FROM tpcds.sf1;
+SHOW TABLES FROM tpcds.tiny;
 ```
 
 Expected output:
