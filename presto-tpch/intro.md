@@ -1,7 +1,6 @@
-<center>
+<div style="text-align: center; margin-bottom: 25px;">
   <img src="./assets/presto-logo.png" width="260" alt="Presto Logo" />
-</center>
-
+</div>
 This scenario provides a hands-on guide to deploying PrestoDB and running SQL queries against the industry-standard TPC-H and TPC-DS benchmark datasets.
 
 ## PrestoDB Overview
