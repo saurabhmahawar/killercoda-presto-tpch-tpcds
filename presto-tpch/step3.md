@@ -1,6 +1,6 @@
 # Step 3: Connect to Presto CLI & Explore Catalogs
 
-In this step, you'll use the Presto CLI to explore the available catalogs, schemas, and tables.
+In this step, you will use the Presto CLI to explore the available catalogs, schemas, and tables.
 
 ## Launch the Presto CLI
 
@@ -17,7 +17,7 @@ presto>
 
 ## List Available Catalogs
 
-Let's see all the catalogs that Presto has loaded:
+List the active catalogs:
 
 ```sql
 SHOW CATALOGS;
@@ -38,7 +38,7 @@ You can see `tpch` and `tpcds` are available along with `jmx` and the built-in `
 
 ## Explore TPC-H Schemas
 
-Each catalog contains schemas. For TPC-H, schemas represent different **scale factors** — the size of the generated dataset:
+List the available schemas in the `tpch` catalog. The schemas correspond to scale factors that define the size of the generated dataset:
 
 ```sql
 SHOW SCHEMAS FROM tpch;
@@ -68,11 +68,11 @@ Expected output:
 | `sf100` | Scale factor 100 (~100 GB of data) |
 | `sf1000` | Scale factor 1000 (~1 TB of data) |
 
-> **Tip:** For this tutorial, we'll use `tiny` — it generates a small dataset so our queries return instantly without hitting memory limits in this sandbox environment.
+> **Note:** This scenario uses the `tiny` schema (SF 0.01) to run queries quickly within the container's resource limits.
 
 ## List TPC-H Tables
 
-Let's see what tables are available in the `tiny` schema:
+List the tables in the `tiny` schema:
 
 ```sql
 SHOW TABLES FROM tpch.tiny;
@@ -109,7 +109,7 @@ SHOW TABLES FROM tpcds.tiny;
 
 Expected output:
 ```
-        Table
+         Table
 ------------------------
  call_center
  catalog_page
@@ -140,12 +140,13 @@ Expected output:
 
 Notice TPC-DS has **24 tables** compared to TPC-H's 8 — it's a much more complex data model representing a complete retail business.
 
-## Exit the CLI (for now)
+## Exit the CLI
 
-Exit the Presto CLI so we can continue with the tutorial steps:
+Exit the Presto CLI:
 
 ```sql
 quit;
 ```
 
-Excellent! You've explored both catalogs. Next, let's run some real queries against TPC-H data!
+Proceed to the next step to run queries against TPC-H data.
+

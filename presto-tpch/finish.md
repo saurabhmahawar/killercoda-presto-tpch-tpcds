@@ -1,39 +1,34 @@
-# 🎉 Congratulations!
+# Scenario Completed
 
-You've successfully completed the **PrestoDB: Querying TPC-H & TPC-DS Data** scenario!
+You have completed the scenario for querying TPC-H and TPC-DS data in PrestoDB.
 
-## What You Accomplished
+## Tasks Completed
 
-✅ Deployed PrestoDB using Docker  
-✅ Configured TPC-H and TPC-DS catalog connectors  
-✅ Explored catalogs, schemas, and tables using the Presto CLI  
-✅ Ran analytical queries on TPC-H data (parts supplier model)  
-✅ Ran analytical queries on TPC-DS data (retail store model)  
-✅ Compared TPC-H and TPC-DS datasets  
+*   Deployed PrestoDB using Docker.
+*   Configured TPC-H and TPC-DS catalog connectors.
+*   Explored available catalogs, schemas, and tables via the Presto CLI.
+*   Executed analytical queries against the TPC-H parts supplier dataset.
+*   Executed analytical queries against the TPC-DS multi-channel retail dataset.
+*   Compared the structural differences between TPC-H and TPC-DS models.
 
-## Key Takeaways
+## Key Concepts
 
-1. **Presto is schema-on-read** — it doesn't store data itself but queries data sources through connectors.
-2. **TPC-H and TPC-DS connectors** generate data on the fly, making them perfect for learning and benchmarking without any external database setup.
-3. **Scale factors** let you control dataset size — from `tiny` (for quick tests) to `sf100000` (for serious benchmarks).
-4. **Presto's SQL** is ANSI SQL compliant, so your existing SQL skills transfer directly.
+1.  **Schema-on-Read**: Presto does not store data directly. It queries data sources in-place through configured connectors.
+2.  **Built-in Benchmarking**: The TPC-H and TPC-DS connectors generate data on the fly. This provides a self-contained environment for learning SQL and testing query behavior without setting up external databases.
+3.  **Scale Factors**: You can adjust the dataset size using different schemas, from `tiny` (scale factor 0.01) for functional tests to larger scale factors for performance benchmarking.
 
-## Next Steps
+## Join the Community
 
-Here are some ideas to continue your Presto journey:
+To learn more about Presto and get support, join the PrestoDB community:
 
-- 📖 **Presto Documentation**: [prestodb.io/docs](https://prestodb.io/docs/current/)
-- 🔌 **Connect to real data sources**: Try Hive, MySQL, PostgreSQL, or Elasticsearch connectors
-- 📊 **Presto Web UI**: Access the Presto dashboard at `http://localhost:8080` to monitor queries
-- ⚡ **Performance tuning**: Learn about memory management, cost-based optimization, and partitioning
-- 🏗️ **Deploy a Presto cluster**: Set up a coordinator + workers architecture for distributed queries
+*   **Presto Slack Workspace**: [Join Presto Slack](https://communityinviter.com/apps/prestodb/prestodb)
+*   **Documentation**: [PrestoDB Documentation](https://prestodb.io/docs/current/)
 
 ## Clean Up
 
-To stop and remove the Presto container:
+To stop and remove the Presto container from the terminal:
 
 ```bash
 docker stop presto && docker rm presto
 ```
 
-Thank you for completing this scenario! 🙌

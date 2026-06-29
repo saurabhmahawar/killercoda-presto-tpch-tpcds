@@ -1,20 +1,20 @@
-# Step 1: Install & Start PrestoDB
+# Step 1: Deploy PrestoDB
 
-In this step, you'll pull the official PrestoDB Docker image and start a Presto server with TPC-H and TPC-DS catalogs configured.
+In this step, you will start a PrestoDB server using Docker with catalog configurations for TPC-H and TPC-DS.
 
 ## Verify Docker is Available
 
-First, let's confirm Docker is running in your environment:
+Confirm Docker is running in your environment:
 
 ```bash
 docker --version
 ```
 
-You should see the Docker version output.
+You should see the Docker version details.
 
-## Prepare the Catalog Configuration
+## Prepare the Catalog Directory
 
-The TPC-H and TPC-DS catalog configuration files have already been placed in your home directory by the scenario setup. Let's create a proper catalog directory and copy them:
+The TPC-H and TPC-DS catalog properties files have been written to `/root/` by the background setup. Create a catalog directory and copy these files:
 
 ```bash
 mkdir -p ~/presto-catalog
@@ -23,17 +23,17 @@ cp ~/tpcds.properties ~/presto-catalog/
 cp ~/jmx.properties ~/presto-catalog/
 ```
 
-Let's verify the catalog files are in place:
+Verify that the files are present in the directory:
 
 ```bash
 ls -la ~/presto-catalog/
 ```
 
-You should see three files: `tpch.properties`, `tpcds.properties`, and `jmx.properties`.
+You should see the following files: `tpch.properties`, `tpcds.properties`, and `jmx.properties`.
 
-## Start the PrestoDB Container
+## Run the PrestoDB Container
 
-Now, start PrestoDB with the catalog directory mounted:
+Start the PrestoDB container with the catalog directory mounted:
 
 ```bash
 docker run -d \
@@ -43,15 +43,11 @@ docker run -d \
   prestodb/presto:latest
 ```
 
-This command:
-- Runs Presto in detached mode (`-d`)
-- Names the container `presto`
-- Exposes port `8080` for the Presto Web UI
-- Mounts your catalog configuration into the container
+This command runs the container in the background, maps port 8080, and mounts your local catalog files to Presto's configuration directory.
 
 ## Wait for Presto to Start
 
-Presto takes a few seconds to initialize. Let's wait for it to be ready:
+Wait for the Presto service to initialize:
 
 ```bash
 echo "Waiting for Presto to start..."
@@ -59,15 +55,18 @@ until docker exec presto presto-cli --execute "SELECT 1" &>/dev/null; do
   sleep 2
   echo "  Still waiting..."
 done
-echo "✅ PrestoDB is ready!"
+echo "PrestoDB is ready!"
 ```
 
-## Verify the Container is Running
+## Verify the Container Status
+
+Check the status of the container:
 
 ```bash
 docker ps --filter name=presto
 ```
 
-You should see the `presto` container in a `healthy` or `running` state.
+The container should show a status of "Up".
 
-Great! PrestoDB is now up and running. Let's move on to exploring the catalogs.
+Proceed to the next step to explore the configured catalogs.
+

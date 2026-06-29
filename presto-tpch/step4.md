@@ -1,54 +1,56 @@
 # Step 4: Query TPC-H Data
 
-In this step, you'll run SQL queries against the TPC-H dataset — a parts supplier data model commonly used for analytical benchmarking.
+In this step, you will run analytical SQL queries against the TPC-H parts supplier dataset.
 
 ## Connect to the Presto CLI
+
+Connect to the CLI targeting the `tpch` catalog and `tiny` schema:
 
 ```bash
 docker exec -it presto presto-cli --catalog tpch --schema tiny
 ```
 
-This connects you directly to the `tpch` catalog and `tiny` schema, so you don't need to fully qualify table names.
+This sets the active catalog and schema for your session so you do not need to fully qualify table names in your queries.
 
-## Query 1: List All Nations
+## Query 1: Retrieve All Nations
 
-Start with a simple query to see all nations in the TPC-H dataset:
+Retrieve all records from the `nation` table:
 
 ```sql
 SELECT * FROM nation;
 ```
 
-This returns 25 rows — one for each nation in the benchmark dataset.
+The query returns 25 rows, representing the default nations defined in the TPC-H benchmark.
 
-## Query 2: List All Regions
+## Query 2: Retrieve All Regions
 
 ```sql
 SELECT * FROM region;
 ```
 
-TPC-H defines 5 regions: AFRICA, AMERICA, ASIA, EUROPE, and MIDDLE EAST.
+This returns the 5 default regions: AFRICA, AMERICA, ASIA, EUROPE, and MIDDLE EAST.
 
 ## Query 3: Count Customers
 
-How many customers are in the `tiny` dataset?
+Count the total number of customers in the `tiny` dataset:
 
 ```sql
 SELECT COUNT(*) AS total_customers FROM customer;
 ```
 
-At the tiny scale factor, you should see **1,500 customers**.
+At the tiny scale factor (SF 0.01), this query returns **1,500**.
 
-## Query 4: Describe Table Structure
+## Query 4: View Table Structure
 
-Let's look at the structure of the `orders` table:
+Inspect the columns and data types of the `orders` table:
 
 ```sql
 DESCRIBE orders;
 ```
 
-This shows all columns, their data types, and other metadata.
+## Query 5: Retrieve Top 10 Customers by Account Balance
 
-## Query 5: Top 10 Customers by Account Balance
+Identify the top 10 customers with the highest account balance:
 
 ```sql
 SELECT
@@ -61,9 +63,9 @@ ORDER BY c.acctbal DESC
 LIMIT 10;
 ```
 
-## Query 6: Order Count by Status
+## Query 6: Calculate Order Counts by Status
 
-Analyze the distribution of order statuses:
+Analyze the distribution of order statuses and average total price:
 
 ```sql
 SELECT
@@ -75,9 +77,9 @@ GROUP BY orderstatus
 ORDER BY order_count DESC;
 ```
 
-## Query 7: Revenue by Nation (Top 10)
+## Query 7: Calculate Revenue by Nation (Top 10)
 
-This is a classic TPC-H analytical query — calculate total revenue per nation using joins across multiple tables:
+This query joins the `lineitem`, `orders`, `customer`, and `nation` tables to compute total revenue per nation:
 
 ```sql
 SELECT
@@ -93,11 +95,9 @@ ORDER BY revenue DESC
 LIMIT 10;
 ```
 
-This query joins **lineitem → orders → customer → nation** to compute total revenue per nation — a common analytical pattern.
+## Query 8: Group and Order Monthly Revenue
 
-## Query 8: Monthly Revenue Trend
-
-Analyze revenue trends over time:
+Analyze monthly revenue trends by extracting the year and month from the order date:
 
 ```sql
 SELECT
@@ -113,8 +113,11 @@ LIMIT 20;
 
 ## Exit the CLI
 
+Exit the Presto CLI session:
+
 ```sql
 quit;
 ```
 
-You've just run analytical queries on TPC-H data! Next, let's explore the TPC-DS dataset.
+Proceed to the next step to query the TPC-DS dataset.
+

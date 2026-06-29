@@ -1,16 +1,18 @@
 # Step 5: Query TPC-DS Data
 
-In this step, you'll query the TPC-DS dataset — a retail store data model that is more complex than TPC-H, with 24 tables covering stores, customers, sales, items, and promotions.
+In this step, you will run analytical SQL queries against the TPC-DS multi-channel retail dataset.
 
 ## Connect to the Presto CLI
+
+Connect to the CLI targeting the `tpcds` catalog and `tiny` schema:
 
 ```bash
 docker exec -it presto presto-cli --catalog tpcds --schema tiny
 ```
 
-## Query 1: Browse Store Information
+## Query 1: Retrieve Store Details
 
-Let's start by looking at the stores in the dataset:
+Retrieve basic information about retail stores:
 
 ```sql
 SELECT
@@ -23,9 +25,9 @@ FROM store
 LIMIT 10;
 ```
 
-## Query 2: Explore the Item Catalog
+## Query 2: Retrieve Catalog Items
 
-Look at items available in the retail catalog:
+View items available in the retail catalog:
 
 ```sql
 SELECT
@@ -38,27 +40,29 @@ FROM item
 LIMIT 10;
 ```
 
-## Query 3: Describe the Store Sales Table
+## Query 3: Inspect Store Sales Table Structure
 
-The `store_sales` table is central to TPC-DS analytics:
+Inspect the columns and data types of the `store_sales` table:
 
 ```sql
 DESCRIBE store_sales;
 ```
 
-Notice the many fact-dimension relationships — `ss_item_sk`, `ss_customer_sk`, `ss_store_sk`, etc. These are foreign keys to dimension tables.
+Note the foreign key relationships such as `ss_item_sk`, `ss_customer_sk`, and `ss_store_sk` linking fact records to dimensions.
 
 ## Query 4: Count Store Sales Records
+
+Count the total transactions in the `store_sales` table:
 
 ```sql
 SELECT COUNT(*) AS total_store_sales FROM store_sales;
 ```
 
-At the tiny scale factor, there are approximately **28,800** store sales records.
+At the tiny scale factor, this returns approximately **28,800** records.
 
-## Query 5: Top 10 Items by Sales Quantity
+## Query 5: Retrieve Top 10 Items by Sales Quantity
 
-Find the best-selling items across all stores:
+Identify the best-selling items across all stores:
 
 ```sql
 SELECT
@@ -74,9 +78,9 @@ ORDER BY total_quantity DESC
 LIMIT 10;
 ```
 
-## Query 6: Sales by Store and State
+## Query 6: Calculate Store Performance by State
 
-Analyze store performance by geographic location:
+Calculate store sales metrics and average transaction values grouped by state:
 
 ```sql
 SELECT
@@ -92,9 +96,9 @@ ORDER BY total_revenue DESC
 LIMIT 10;
 ```
 
-## Query 7: Customer Demographics Analysis
+## Query 7: Analyze Store Sales by Demographics
 
-TPC-DS includes rich demographic data. Let's analyze sales by customer demographics:
+Analyze sales metrics grouped by customer demographics (gender, marital status, education):
 
 ```sql
 SELECT
@@ -110,9 +114,9 @@ ORDER BY total_spent DESC
 LIMIT 10;
 ```
 
-## Query 8: Cross-Channel Sales Comparison
+## Query 8: Compare Multi-Channel Sales
 
-One of TPC-DS's strengths is modeling multi-channel retail. Let's compare store vs. web sales:
+Compare transaction counts and total net revenue across store, web, and catalog channels:
 
 ```sql
 SELECT 'Store Sales' AS channel, COUNT(*) AS transactions, ROUND(SUM(ss_net_paid), 2) AS revenue
@@ -125,9 +129,9 @@ SELECT 'Catalog Sales' AS channel, COUNT(*) AS transactions, ROUND(SUM(cs_net_pa
 FROM catalog_sales;
 ```
 
-This shows how retail data flows through three channels: **store**, **web**, and **catalog**.
+## Dataset Comparison
 
-## TPC-H vs TPC-DS: Quick Comparison
+The following table summarizes the structural differences between TPC-H and TPC-DS:
 
 | Feature | TPC-H | TPC-DS |
 |---------|-------|--------|
@@ -141,8 +145,9 @@ This shows how retail data flows through three channels: **store**, **web**, and
 
 ## Exit the CLI
 
+Exit the Presto CLI session:
+
 ```sql
 quit;
 ```
 
-Congratulations! You've queried both TPC-H and TPC-DS datasets in PrestoDB!
