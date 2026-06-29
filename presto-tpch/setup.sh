@@ -16,7 +16,7 @@ EOF
 
 # Create the wait script that foreground.sh will execute
 # (This prevents a wall of bash code from typing out in the user's terminal)
-cat << 'EOF' > /root/wait.sh
+cat << 'EOF' > /usr/local/bin/wait.sh
 #!/bin/bash
 clear
 echo "Preparing your PrestoDB environment... (pulling Docker image)"
@@ -34,7 +34,7 @@ done
 clear
 echo "Environment ready! Follow the steps to get started."
 EOF
-chmod +x /root/wait.sh
+chmod +x /usr/local/bin/wait.sh
 
 # Pre-pull the PrestoDB Docker image in the background
 # so the user doesn't wait during Step 1
