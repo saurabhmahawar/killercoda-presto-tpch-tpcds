@@ -1,8 +1,7 @@
-# PrestoDB: Querying TPC-H & TPC-DS Data
+<center>
+  <img src="./assets/presto-logo.png" width="260" alt="Presto Logo" />
+</center>
 
-<p align="center">
-  <img src="./assets/presto-logo.png" width="280" alt="Presto Logo" />
-</p>
 This scenario provides a hands-on guide to deploying PrestoDB and running SQL queries against the industry-standard TPC-H and TPC-DS benchmark datasets.
 
 ## PrestoDB Overview
