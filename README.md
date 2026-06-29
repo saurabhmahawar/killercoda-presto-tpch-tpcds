@@ -18,7 +18,7 @@ This repository contains the configuration, instructions, and scripts for a Kill
     ├── index.json             # Scenario metadata & configuration
     ├── intro.md               # Scenario introduction page
     ├── step1.md               # Step 1: Deploy PrestoDB container
-    ├── step2.md               # Step 2: Configure catalogs (tpch, tpcds, jmx)
+    ├── step2.md               # Step 2: Verify PrestoDB & access Web UI
     ├── step3.md               # Step 3: Connect via CLI & explore schemas
     ├── step4.md               # Step 4: Run TPC-H queries
     ├── step5.md               # Step 5: Run TPC-DS queries
@@ -34,8 +34,8 @@ This repository contains the configuration, instructions, and scripts for a Kill
 ## How it Works
 
 1.  **Environment Setup**: When the scenario starts, `setup.sh` runs in the background to write the Presto catalog property configurations to `/root/` and pre-pull the PrestoDB image.
-2.  **Terminal Initialization**: `foreground.sh` displays a loading message, waits for the background configuration to finish, and clears the screen once the container environment is ready.
-3.  **Scenario Steps**: The markdown pages (`step1.md` to `step5.md`) guide the user through catalog creation, CLI access, and query execution against the benchmark schemas.
+2.  **Terminal Initialization**: `foreground.sh` calls the background-generated `wait.sh` script to monitor Presto readiness, enforce a 5-minute timeout guard, and clear the screen once the container is ready.
+3.  **Scenario Steps**: The markdown pages (`step1.md` to `step5.md`) guide the user through catalog verification, CLI access, and query execution against the benchmark schemas.
 
 ## How to Deploy on KillerCoda
 
