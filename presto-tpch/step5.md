@@ -5,7 +5,7 @@ In this step, you'll query the TPC-DS dataset — a retail store data model that
 ## Connect to the Presto CLI
 
 ```bash
-docker exec -it presto presto-cli --catalog tpcds --schema sf1
+docker exec -it presto presto-cli --catalog tpcds --schema tiny
 ```
 
 ## Query 1: Browse Store Information
@@ -54,7 +54,7 @@ Notice the many fact-dimension relationships — `ss_item_sk`, `ss_customer_sk`,
 SELECT COUNT(*) AS total_store_sales FROM store_sales;
 ```
 
-At scale factor 1, there are approximately **2.88 million** store sales records.
+At the tiny scale factor, there are approximately **28,800** store sales records.
 
 ## Query 5: Top 10 Items by Sales Quantity
 

@@ -5,10 +5,10 @@ In this step, you'll run SQL queries against the TPC-H dataset — a parts suppl
 ## Connect to the Presto CLI
 
 ```bash
-docker exec -it presto presto-cli --catalog tpch --schema sf1
+docker exec -it presto presto-cli --catalog tpch --schema tiny
 ```
 
-This connects you directly to the `tpch` catalog and `sf1` schema, so you don't need to fully qualify table names.
+This connects you directly to the `tpch` catalog and `tiny` schema, so you don't need to fully qualify table names.
 
 ## Query 1: List All Nations
 
@@ -30,13 +30,13 @@ TPC-H defines 5 regions: AFRICA, AMERICA, ASIA, EUROPE, and MIDDLE EAST.
 
 ## Query 3: Count Customers
 
-How many customers are in the `sf1` dataset?
+How many customers are in the `tiny` dataset?
 
 ```sql
 SELECT COUNT(*) AS total_customers FROM customer;
 ```
 
-At scale factor 1, you should see **150,000 customers**.
+At the tiny scale factor, you should see **1,500 customers**.
 
 ## Query 4: Describe Table Structure
 
