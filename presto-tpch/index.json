@@ -34,9 +34,9 @@
     },
     "assets": {
       "host01": [
-        { "file": "assets/tpch.properties", "target": "~/" },
-        { "file": "assets/tpcds.properties", "target": "~/" },
-        { "file": "assets/jmx.properties", "target": "~/" }
+        { "file": "assets/tpch.properties", "target": "/root/" },
+        { "file": "assets/tpcds.properties", "target": "/root/" },
+        { "file": "assets/jmx.properties", "target": "/root/" }
       ]
     }
   },
