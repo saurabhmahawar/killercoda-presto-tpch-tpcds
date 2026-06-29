@@ -1,0 +1,49 @@
+{
+  "title": "PrestoDB: Querying TPC-H & TPC-DS Data",
+  "description": "Learn how to deploy PrestoDB with Docker and run SQL queries against TPC-H and TPC-DS benchmark datasets",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Install & Start PrestoDB",
+        "text": "step1.md"
+      },
+      {
+        "title": "Configure TPC-H & TPC-DS Catalogs",
+        "text": "step2.md"
+      },
+      {
+        "title": "Connect to Presto CLI & Explore Catalogs",
+        "text": "step3.md"
+      },
+      {
+        "title": "Query TPC-H Data",
+        "text": "step4.md"
+      },
+      {
+        "title": "Query TPC-DS Data",
+        "text": "step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        { "file": "tpch.properties", "target": "~/" },
+        { "file": "tpcds.properties", "target": "~/" },
+        { "file": "jmx.properties", "target": "~/" }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  },
+  "interface": {
+    "layout": "terminal"
+  }
+}
