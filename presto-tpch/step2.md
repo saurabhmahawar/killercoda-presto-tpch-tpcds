@@ -22,7 +22,7 @@ These configurations instruct PrestoDB to load the corresponding connectors.
 PrestoDB includes a built-in web dashboard for monitoring queries and cluster resources. Since port `8080` was exposed when starting the container, you can access the dashboard directly.
 
 Open the Presto Web UI in your browser:
-*   [Access Presto Web UI](https://{{TRAFFIC_HOST1_8080}})
+*   [Access Presto Web UI]({{TRAFFIC_HOST1_8080}})
 *   *Alternatively, you can open the **Traffic/Ports** menu in the top-right corner of the KillerCoda interface and select port `8080`.*
 
 ## Explore the Dashboard
